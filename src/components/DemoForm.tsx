@@ -169,13 +169,36 @@ export default function DemoForm() {
           </div>
         </motion.div>
 
+        {/* What happens next - CTO reassurance */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="max-w-2xl mx-auto mt-12"
+        >
+          <div className="grid sm:grid-cols-3 gap-4 text-center">
+            {[
+              { step: '01', title: '30-min live demo', desc: 'See agents work on real SAP data' },
+              { step: '02', title: 'Custom ROI analysis', desc: 'Tailored to your landscape size' },
+              { step: '03', title: 'Deploy in days', desc: 'Not quarters. First value in week 1.' },
+            ].map((item, i) => (
+              <div key={i} className="p-4 rounded-xl border border-syspilot-border bg-syspilot-surface/30">
+                <div className="font-heading text-lg font-bold gradient-text mb-1">{item.step}</div>
+                <div className="text-sm font-medium text-syspilot-text mb-0.5">{item.title}</div>
+                <div className="text-xs text-syspilot-muted">{item.desc}</div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Social proof */}
         <motion.blockquote
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="max-w-2xl mx-auto mt-16 text-center"
+          transition={{ delay: 0.6 }}
+          className="max-w-2xl mx-auto mt-12 text-center"
         >
           <p className="text-lg text-syspilot-muted italic leading-relaxed mb-4">
             "SysPilot collapsed our alert investigation time from 40 minutes to under a minute. ORCA delivers the root cause report before our on-call engineer has opened their laptop."
@@ -184,6 +207,20 @@ export default function DemoForm() {
             — VP Infrastructure, SAP Managed Services Provider
           </cite>
         </motion.blockquote>
+
+        {/* CTO urgency statement */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.7 }}
+          className="max-w-xl mx-auto mt-10 text-center p-5 rounded-xl border border-syspilot-primary/10 bg-syspilot-primary/[0.03]"
+        >
+          <p className="text-sm text-syspilot-muted">
+            <span className="text-syspilot-text font-medium">For CTOs:</span> Every week without autonomous SAP operations costs your team ~20 hours of manual triage. Your competitors are already evaluating AI-assisted infrastructure.{' '}
+            <span className="text-syspilot-primary">The window to lead is now.</span>
+          </p>
+        </motion.div>
       </div>
     </section>
   );

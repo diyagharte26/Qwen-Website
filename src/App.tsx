@@ -3,12 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Problem from './components/Problem';
+import CostOfInaction from './components/CostOfInaction';
 import Platform from './components/Platform';
+import BoardroomImpact from './components/BoardroomImpact';
 import Agents from './components/Agents';
 import Workbench from './components/Workbench';
 import HITL from './components/HITL';
 import Observability from './components/Observability';
 import Governance from './components/Governance';
+import CTODecisionFramework from './components/CTODecisionFramework';
+import ExecutiveSummary from './components/ExecutiveSummary';
 import DemoForm from './components/DemoForm';
 import Footer from './components/Footer';
 
@@ -31,12 +35,16 @@ function App() {
             <Navbar />
             <Hero />
             <Problem />
+            <CostOfInaction />
             <Platform />
+            <BoardroomImpact />
             <Agents />
             <Workbench />
             <HITL />
             <Observability />
             <Governance />
+            <CTODecisionFramework />
+            <ExecutiveSummary />
             <DemoForm />
             <Footer />
           </motion.div>

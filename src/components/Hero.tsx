@@ -249,7 +249,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}
-            className="flex flex-wrap gap-4"
+            className="flex flex-wrap gap-4 mb-8"
           >
             {trustBadges.map((badge, i) => (
               <motion.div
@@ -263,6 +263,34 @@ export default function Hero() {
                 <span>{badge.label}</span>
               </motion.div>
             ))}
+          </motion.div>
+
+          {/* CTO Quick Stats - Attention grabber */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8 }}
+            className="flex flex-wrap gap-6 p-4 rounded-xl border border-syspilot-border bg-syspilot-surface/30 backdrop-blur-sm"
+          >
+            <div className="flex items-center gap-2">
+              <span className="font-heading text-2xl font-bold gradient-text">47→12</span>
+              <span className="text-xs text-syspilot-muted leading-tight">min<br/>MTTR</span>
+            </div>
+            <div className="w-px h-8 bg-syspilot-border" />
+            <div className="flex items-center gap-2">
+              <span className="font-heading text-2xl font-bold text-syspilot-green">90s</span>
+              <span className="text-xs text-syspilot-muted leading-tight">Full fleet<br/>CVE scan</span>
+            </div>
+            <div className="w-px h-8 bg-syspilot-border" />
+            <div className="flex items-center gap-2">
+              <span className="font-heading text-2xl font-bold text-syspilot-cyan">100%</span>
+              <span className="text-xs text-syspilot-muted leading-tight">Human<br/>approval gated</span>
+            </div>
+            <div className="w-px h-8 bg-syspilot-border hidden sm:block" />
+            <div className="items-center gap-2 hidden sm:flex">
+              <span className="font-heading text-2xl font-bold text-syspilot-amber">3×</span>
+              <span className="text-xs text-syspilot-muted leading-tight">Engineer<br/>productivity</span>
+            </div>
           </motion.div>
         </div>
 
