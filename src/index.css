@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+@theme {
+  --color-syspilot-black: #090B0F;
+  --color-syspilot-surface: #0F1117;
+  --color-syspilot-border: #1E2330;
+  --color-syspilot-primary: #3D6FFF;
+  --color-syspilot-cyan: #00D4FF;
+  --color-syspilot-green: #00E5A0;
+  --color-syspilot-amber: #FFB347;
+  --color-syspilot-red: #FF4C6A;
+  --color-syspilot-text: #E8ECF4;
+  --color-syspilot-muted: #6B7A99;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #090B0F;
+  color: #E8ECF4;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #090B0F; }
+::-webkit-scrollbar-thumb { background: #1E2330; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3D6FFF; }
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #3D6FFF 0%, #00D4FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(15, 17, 23, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(30, 35, 48, 0.8);
+  border-radius: 16px;
+}
+
+.glass-card:hover {
+  border-color: rgba(61, 111, 255, 0.3);
+}
+
+/* Animated gradient border */
+.gradient-border {
+  position: relative;
+  background: #0F1117;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(135deg, #3D6FFF, #00D4FF, #3D6FFF);
+  background-size: 200% 200%;
+  animation: gradient-rotate 3s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+@keyframes gradient-rotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Pulse dot */
+.pulse-dot {
+  animation: pulse-scale 2s ease-in-out infinite;
+}
+
+@keyframes pulse-scale {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+/* Ticker animation */
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-animate {
+  animation: ticker-scroll 30s linear infinite;
+}
+
+/* Typewriter cursor */
+.typewriter-cursor {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Glow effect */
+.glow-primary {
+  box-shadow: 0 0 20px rgba(61, 111, 255, 0.25), 0 0 60px rgba(61, 111, 255, 0.1);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.25), 0 0 60px rgba(0, 212, 255, 0.1);
+}
+
+/* Mesh gradient background */
+.mesh-gradient {
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(61, 111, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(0, 212, 255, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(61, 111, 255, 0.04) 0%, transparent 50%);
+}
+
+/* Dot grid pattern */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(30, 35, 48, 0.5) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Status badge animations */
+.status-healthy { color: #00E5A0; }
+.status-warning { color: #FFB347; }
+.status-critical { color: #FF4C6A; }
+
+/* 3D card tilt */
+.card-tilt {
+  transition: transform 0.2s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.card-tilt:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.02);
+}
+
+/* Bounce animation for scroll indicator */
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
+}
+
+/* Progress bar fill */
+@keyframes fill-progress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+/* Streaming text effect */
+@keyframes stream-in {
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.stream-line {
+  animation: stream-in 0.3s ease forwards;
+}
+
+/* Nav blur */
+.nav-blur {
+  backdrop-filter: blur(12px);
+  background: rgba(9, 11, 15, 0.85);
+  border-bottom: 1px solid rgba(30, 35, 48, 0.5);
+}
+
+/* Confetti canvas */
+.confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
