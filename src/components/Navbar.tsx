@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,17 +14,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [location]);
-
-  const navLinks = [
-    { label: 'Platform', href: '/#platform' },
-    { label: 'Solutions', href: '/#solutions' },
-    { label: 'Enterprise', href: '/#enterprise' },
-    { label: 'Resources', href: '/resources' },
-    { label: 'Company', href: '/company' },
-  ];
+  const navLinks = ['Platform', 'Agents', 'Observability', 'Security', 'Pricing'];
 
   return (
     <motion.nav
@@ -39,34 +27,43 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="font-heading text-xl font-semibold text-syspilot-text group-hover:text-syspilot-primary transition-colors">
-            SysPilot
-          </span>
-        </Link>
+        <motion.div
+          initial={{ scale: 0.8 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.2, type: 'spring' }}
+          className="flex items-center gap-2"
+        >
+          <span className="font-heading text-xl font-bold text-syspilot-text">SysPilot</span>
+          <motion.span
+            animate={{ scale: [1, 1.3, 1] }}
+            transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+            className="w-2 h-2 rounded-full bg-syspilot-primary"
+          />
+        </motion.div>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              to={link.href}
-              className="relative text-sm text-syspilot-text-secondary hover:text-syspilot-text transition-colors duration-200 group"
+            <a
+              key={link}
+              href={`#${link.toLowerCase()}`}
+              className="text-sm text-syspilot-muted hover:text-syspilot-text transition-colors duration-200"
             >
-              {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-syspilot-primary group-hover:w-full transition-all duration-300" />
-            </Link>
+              {link}
+            </a>
           ))}
         </div>
 
         {/* CTA Button */}
         <div className="hidden md:block">
-          <Link
-            to="/#demo"
-            className="relative px-5 py-2.5 rounded-lg text-sm font-medium text-syspilot-black bg-syspilot-primary hover:bg-syspilot-primary-dark transition-colors duration-200"
+          <a
+            href="#demo"
+            className="relative px-5 py-2.5 rounded-lg text-sm font-medium text-white overflow-hidden group"
           >
-            Request a Demo
-          </Link>
+            <span className="absolute inset-0 bg-gradient-to-r from-syspilot-primary to-syspilot-cyan opacity-90 group-hover:opacity-100 transition-opacity" />
+            <span className="absolute inset-0 rounded-lg border border-transparent group-hover:border-white/20 transition-all" />
+            <span className="relative">Book a Demo</span>
+          </a>
         </div>
 
         {/* Mobile menu button */}
@@ -88,20 +85,21 @@ export default function Navbar() {
         >
           <div className="px-6 py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.href}
-                className="text-sm text-syspilot-text-secondary hover:text-syspilot-text transition-colors"
+              <a
+                key={link}
+                href={`#${link.toLowerCase()}`}
+                onClick={() => setMobileOpen(false)}
+                className="text-sm text-syspilot-muted hover:text-syspilot-text transition-colors"
               >
-                {link.label}
-              </Link>
+                {link}
+              </a>
             ))}
-            <Link
-              to="/#demo"
-              className="mt-2 px-5 py-2.5 rounded-lg text-sm font-medium text-syspilot-black bg-syspilot-primary text-center"
+            <a
+              href="#demo"
+              className="mt-2 px-5 py-2.5 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-syspilot-primary to-syspilot-cyan text-center"
             >
-              Request a Demo
-            </Link>
+              Book a Demo
+            </a>
           </div>
         </motion.div>
       )}

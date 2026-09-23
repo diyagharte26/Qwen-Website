@@ -1,23 +1,56 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Problem from './components/Problem';
+import CostOfInaction from './components/CostOfInaction';
+import Platform from './components/Platform';
+import BoardroomImpact from './components/BoardroomImpact';
+import Agents from './components/Agents';
+import Workbench from './components/Workbench';
+import HITL from './components/HITL';
+import Observability from './components/Observability';
+import Governance from './components/Governance';
+import CTODecisionFramework from './components/CTODecisionFramework';
+import ExecutiveSummary from './components/ExecutiveSummary';
+import DemoForm from './components/DemoForm';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import Company from './pages/Company';
-import Resources from './pages/Resources';
 
 function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-syspilot-black text-syspilot-text overflow-x-hidden">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/company" element={<Company />} />
-          <Route path="/resources" element={<Resources />} />
-        </Routes>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <div className="min-h-screen bg-syspilot-black text-syspilot-text overflow-x-hidden">
+      <AnimatePresence>
+        {isLoaded && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Navbar />
+            <Hero />
+            <Problem />
+            <CostOfInaction />
+            <Platform />
+            <BoardroomImpact />
+            <Agents />
+            <Workbench />
+            <HITL />
+            <Observability />
+            <Governance />
+            <CTODecisionFramework />
+            <ExecutiveSummary />
+            <DemoForm />
+            <Footer />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
