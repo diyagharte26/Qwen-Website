@@ -1,17 +1,23 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const footerLinks = {
-  product: [
-    { label: 'Platform', href: '#platform' },
-    { label: 'Agents', href: '#agents' },
-    { label: 'Observability', href: '#observability' },
-    { label: 'Security', href: '#security' },
-    { label: 'Pricing', href: '#' },
+  platform: [
+    { label: 'Platform', href: '/#platform' },
+    { label: 'Solutions', href: '/#solutions' },
+    { label: 'Enterprise', href: '/#enterprise' },
+  ],
+  resources: [
+    { label: 'Resources', href: '/resources' },
+    { label: 'Use Cases', href: '/resources' },
+    { label: 'Insights', href: '/resources' },
+    { label: 'Product Brief', href: '/resources' },
   ],
   company: [
-    { label: 'About', href: '#' },
-    { label: 'Careers', href: '#' },
-    { label: 'Contact', href: '#' },
+    { label: 'Company', href: '/company' },
+    { label: 'About SysPilot', href: '/company' },
+    { label: 'OS3 Infotech', href: 'https://os3infotech.com' },
+    { label: 'EvoMind', href: 'https://evomind.ai' },
   ],
   legal: [
     { label: 'Privacy Policy', href: '#' },
@@ -24,34 +30,48 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-syspilot-border">
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-4"
             >
-              <div className="flex items-center gap-2 mb-3">
-                <span className="font-heading text-xl font-bold text-syspilot-text">SysPilot</span>
-                <span className="w-2 h-2 rounded-full bg-syspilot-primary" />
-              </div>
-              <p className="text-sm text-syspilot-muted leading-relaxed">
-                Autonomous AI for SAP Infrastructure Operations
+              <Link to="/" className="inline-block mb-4">
+                <span className="font-heading text-xl font-semibold text-syspilot-text hover:text-syspilot-primary transition-colors">
+                  SysPilot
+                </span>
+              </Link>
+              <p className="text-sm text-syspilot-text-secondary leading-relaxed">
+                Intelligent operations for enterprise infrastructure.
               </p>
             </motion.div>
           </div>
 
-          {/* Product */}
+          {/* Platform */}
           <div>
-            <h4 className="font-heading text-sm font-semibold text-syspilot-text mb-4">Product</h4>
+            <h4 className="font-heading text-sm font-semibold text-syspilot-text mb-4">Platform</h4>
             <ul className="space-y-2.5">
-              {footerLinks.product.map((link) => (
+              {footerLinks.platform.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-syspilot-muted hover:text-syspilot-text transition-colors">
+                  <Link to={link.href} className="text-sm text-syspilot-text-secondary hover:text-syspilot-text transition-colors">
                     {link.label}
-                  </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="font-heading text-sm font-semibold text-syspilot-text mb-4">Resources</h4>
+            <ul className="space-y-2.5">
+              {footerLinks.resources.map((link) => (
+                <li key={link.label}>
+                  <Link to={link.href} className="text-sm text-syspilot-text-secondary hover:text-syspilot-text transition-colors">
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -63,9 +83,15 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-syspilot-muted hover:text-syspilot-text transition-colors">
-                    {link.label}
-                  </a>
+                  {link.href.startsWith('http') ? (
+                    <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-sm text-syspilot-text-secondary hover:text-syspilot-text transition-colors">
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link to={link.href} className="text-sm text-syspilot-text-secondary hover:text-syspilot-text transition-colors">
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -77,7 +103,7 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {footerLinks.legal.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-syspilot-muted hover:text-syspilot-text transition-colors">
+                  <a href={link.href} className="text-sm text-syspilot-text-secondary hover:text-syspilot-text transition-colors">
                     {link.label}
                   </a>
                 </li>
